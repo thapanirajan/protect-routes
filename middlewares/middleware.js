@@ -61,7 +61,7 @@ export const ownsBlog = async (req, res, next) => {
         }
 
 
-        const blog = await Blog.findById(id)
+        const blog = await Blog.findById(blogId)
 
         if (!blog) {
             return res.status(400).json({

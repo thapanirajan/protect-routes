@@ -16,9 +16,14 @@ export const register = async (req, res) => {
         }
 
         // check if the user already exists
-        const existingUser = await User.findOne({ email })
+        // const existingUser = await User.findOne({ email })
+        const existingUser = await User.aggregate([
+            { $match: { email } }
+        ])
 
-        if (existingUser) {
+        const user = existingUser[0] || null
+
+        if (user) {
             return res.status(400).json({ msg: "User already exists" })
         }
 
@@ -65,7 +70,12 @@ export const login = async (req, res) => {
         }
 
 
-        const user = await User.findOne({ email });
+        // const user = await User.findOne({ email });
+        const users = await User.aggregate([ // --> return array of user  
+            { $match: { email: email } }
+        ])
+        const user = users[0] || null;
+        console.log(user)
 
         if (!user) {
             return res.status(400).json({ msg: "Invalid credentials" });

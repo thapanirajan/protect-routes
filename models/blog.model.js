@@ -9,9 +9,15 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: [true, "content is required"]
     },
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comments"
+        }
+    ],
     authorId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"User",
+        ref: "User",
         required: [true, "authorId is required"]
     }
 }, { timestamps: true })

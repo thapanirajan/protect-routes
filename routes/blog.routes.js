@@ -14,4 +14,5 @@ blogRoutes.put("/:id", authenticateToken, isAuthor, ownsBlog, handleUpdateBlog)
 blogRoutes.delete("/:id", authenticateToken, isAuthor, ownsBlog, handleDeleteBlog)
 blogRoutes.get("/:userId", handleGetBlogsByAuthor)
 
+
 export default blogRoutes;

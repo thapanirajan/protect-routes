@@ -71,7 +71,6 @@ export const handleDeleteBlog = async (req, res) => {
             blogIds: id
         }
     })
-
     res.json({ deleteBlog })
 }
 
